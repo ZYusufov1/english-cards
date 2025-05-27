@@ -14,7 +14,8 @@ import CardButton from '@/components/CardButton.vue'
 
 <style scoped>
     .block {
-        margin: auto 30px;
+        margin-left: 30px;
+        margin-right: 30px;
         display: flex;
         flex-direction: row;
         justify-content: space-between;
@@ -22,7 +23,8 @@ import CardButton from '@/components/CardButton.vue'
 
     @media (max-width: 600px) {
         .block {
-            margin: auto;
+            margin-left: auto;
+            margin-right: auto;
             width: 90%;
             display: flex;
             flex-direction: row;

@@ -13,5 +13,7 @@
         height: 100svh;
         display: flex;
         flex-direction: column;
+        justify-content: center;
+        align-items: center;
     }
 </style>
