@@ -53,6 +53,8 @@ const addCard = (): void => {
 <style scoped>
     form {
         display: flex;
+        margin-left: auto;
+        margin-right: auto;
         flex-direction: column;
         gap: 10px;
         max-width: 400px;

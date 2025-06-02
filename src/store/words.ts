@@ -1,4 +1,5 @@
 import { defineStore } from 'pinia'
+import addUnique from '@/utils'
 
 export interface WordItem {
     word: string
@@ -22,10 +23,10 @@ export const useWordStore = defineStore('words', {
 
     actions: {
         importData(data: WordCategories) {
-            this.verbs = data.verbs || []
-            this.nouns = data.nouns || []
-            this.adjectives = data.adjectives || []
-            this.ielts = data.ielts || []
+            addUnique(this.verbs, data.verbs || [])
+            addUnique(this.nouns, data.nouns || [])
+            addUnique(this.adjectives, data.adjectives || [])
+            addUnique(this.ielts, data.ielts || [])
         },
 
         exportData(): WordCategories {
@@ -34,6 +35,21 @@ export const useWordStore = defineStore('words', {
                 nouns: this.nouns,
                 adjectives: this.adjectives,
                 ielts: this.ielts
+            }
+        },
+
+        initFromStorage() {
+            const data = localStorage.getItem('wordStore')
+            if (!data) return
+
+            try {
+                const parsed: WordCategories = JSON.parse(data)
+                this.verbs = parsed.verbs || []
+                this.nouns = parsed.nouns || []
+                this.adjectives = parsed.adjectives || []
+                this.ielts = parsed.ielts || []
+            } catch (e) {
+                console.error('Ошибка при разборе localStorage:', e)
             }
         }
     }

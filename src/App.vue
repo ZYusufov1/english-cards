@@ -1,4 +1,20 @@
 <script setup lang="ts">
+import { onMounted, watch } from 'vue'
+import { useWordStore } from '@/store/words'
+
+const store = useWordStore()
+
+onMounted(() => {
+    store.initFromStorage()
+})
+
+watch(
+    () => store.$state,
+    (newState) => {
+        localStorage.setItem('wordStore', JSON.stringify(newState))
+    },
+    { deep: true }
+)
 </script>
 
 <template>
@@ -14,6 +30,5 @@
         display: flex;
         flex-direction: column;
         justify-content: center;
-        //align-items: center;
     }
 </style>
